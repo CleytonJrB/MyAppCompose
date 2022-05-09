@@ -1,2 +1,5 @@
 # NorBrJetPackCompose
- JetPackCompose Kotlin
+ JetPackCompose - Kotlin
+* ModalBottomSheet
+* LazyColumn
+* Navigation ARGs
