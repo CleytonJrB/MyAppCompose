@@ -34,7 +34,9 @@ class MainActivity : ComponentActivity() {
   @Composable
   fun ModalBottomLayout() {
     val modalBottomSheetState =
-      rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+      rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden, confirmStateChange = {
+        it != ModalBottomSheetValue.HalfExpanded
+      })
     val scope = rememberCoroutineScope()
 
     ModalBottomSheetLayout(
@@ -56,6 +58,9 @@ class MainActivity : ComponentActivity() {
   @OptIn(ExperimentalMaterialApi::class)
   @Composable
   fun MainContent(scope: CoroutineScope, state: ModalBottomSheetState) {
+
+
+
     Column(
       Modifier
         .fillMaxSize()
@@ -70,7 +75,11 @@ class MainActivity : ComponentActivity() {
         ),
         onClick = {
           scope.launch {
-            state.show()
+            if (state.isVisible) {
+              state.hide()
+            } else {
+              state.animateTo(ModalBottomSheetValue.Expanded)
+            }
           }
         }) {
         Text(text = "Abrir o Modal Bottom Sheet", color = BlueBlack)

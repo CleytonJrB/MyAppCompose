@@ -16,12 +16,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.myappcompose.models.CredictCard
 import com.example.myappcompose.ui.theme.BlueBlack
 
 @Composable
-fun CardsListItem(cards: CredictCard) {
-
+fun AddNewPayment(){
   Card(
     modifier = Modifier
       .padding(horizontal = 8.dp, vertical = 8.dp)
@@ -34,49 +32,30 @@ fun CardsListItem(cards: CredictCard) {
     Row(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(start = 30.dp),
+        .padding(start = 0.dp),
       verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.Center
+      horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-      cards.image?.let { painterResource(id = it) }?.let {
-        Image(
-          painter =
-          it,
-          contentDescription = cards.nameCard,
-          contentScale = ContentScale.Fit,
-          modifier = Modifier
-            .size(50.dp, 50.dp)
-            .clip(RoundedCornerShape(corner = CornerSize(8.dp)))
-        )
-      }
-      Column(
+      Image(
+        painter =
+        painterResource(id = R.drawable.ic_baseline_add_24),
+        contentDescription = null,
+        contentScale = ContentScale.Fit,
         modifier = Modifier
-          .padding(start = 56.dp, top = 12.dp, bottom = 16.dp)
-          .fillMaxWidth(),
-      ) {
-        cards.nameCard?.let {
-          Text(
-            text = it,
-            color = BlueBlack,
-            style = MaterialTheme.typography.h6
-          )
-        }
-        cards.cardtype?.let {
-          Text(
-            text = it,
-            color = BlueBlack,
-            style = MaterialTheme.typography.caption
-          )
-        }
-      }
+          .size(50.dp, 50.dp)
+          .clip(RoundedCornerShape(corner = CornerSize(8.dp)))
+      )
+      Text(
+        text = "Novo metodo de pagamento",
+        color = BlueBlack,
+        style = MaterialTheme.typography.h6
+      )
     }
   }
 }
 
-@Preview(showBackground = false)
+@Preview
 @Composable
-fun ListItemPreview() {
-  CardsListItem(
-    cards = CredictCard(1, null, "ApplePay", R.drawable.applepay)
-  )
+fun AddNewPaymentPreview(){
+  AddNewPayment()
 }

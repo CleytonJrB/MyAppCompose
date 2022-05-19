@@ -30,6 +30,15 @@ fun DetailsCardContent(card: CredictCard,navController: NavController) {
     } else {
       Arrangement.SpaceBetween
     }
+
+//    when(card.cardtype){
+//      null -> Arrangement.Center
+//      else -> {
+//        Arrangement.SpaceBetween
+//      }
+//    }
+
+
   }
 
   Card(
@@ -67,14 +76,16 @@ fun DetailsCardContent(card: CredictCard,navController: NavController) {
             fontFamily = Ubuntu
           )
         }
-        Image(
-          painter = painterResource(id = card.image),
-          contentDescription = null,
-          contentScale = ContentScale.Fit,
-          modifier = Modifier
-            .padding(5.dp)
-            .size(60.dp, 60.dp)
-        )
+        card.image?.let { painterResource(id = it) }?.let {
+          Image(
+            painter = it,
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+              .padding(5.dp)
+              .size(60.dp, 60.dp)
+          )
+        }
         }
         Column(
           modifier = Modifier

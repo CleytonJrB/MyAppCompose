@@ -29,7 +29,7 @@ fun ModalBottomSheet() {
   Column(
     modifier = Modifier
       .fillMaxWidth()
-      .background(White)
+//      .background(White)
   ) {
     Column(
       modifier = Modifier
